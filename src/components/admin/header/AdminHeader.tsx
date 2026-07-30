@@ -30,5 +30,6 @@ export function AdminHeader() {
           <LogoutButton />
         </form>
       </div>
-    </header>)
+    </header>
+  );
 }

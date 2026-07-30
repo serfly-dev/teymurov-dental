@@ -38,12 +38,11 @@ export const serviceSchema = z.object({
         .optional(),
 
     price: z
-        .coerce
-        .number()
-        .min(0)
+        .string()
+        .trim()
         .nullable()
         .optional(),
-
+        
     duration: z
         .string()
         .trim()

@@ -53,3 +53,18 @@ Thumbs.db
 .windsurf/
 .gitignore.save
 skills-lock.json
+# Environment
+.env*
+!.env.example
+
+# Prisma
+prisma/migrations/*/migration_lock.toml
+
+# Next cache
+.next/cache/
+
+# Uploads
+public/uploads/
+
+# OS
+.DS_Store

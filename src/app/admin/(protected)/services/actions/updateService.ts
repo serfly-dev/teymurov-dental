@@ -38,16 +38,13 @@ export async function updateService(
 
                 description:
                     result.data.description || null,
+
                 price:
+                    result.data.price || null,
 
-                    result.data.price
-
-                        ? String(result.data.price)
-
-                        : null,
                 duration:
                     result.data.duration || null,
-
+                    
                 seoTitle:
                     result.data.seoTitle || null,
 

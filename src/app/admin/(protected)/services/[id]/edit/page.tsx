@@ -15,13 +15,19 @@ export default async function EditServicePage({
 }: Props) {
     const { id } = await params;
 
-    const service = await prisma.service.findUnique({
-        where: {
-            id,
+const service = await prisma.service.findUnique({
+    where: {
+        id,
+    },
+
+    include: {
+        lists: {
+            orderBy: {
+                sortOrder: "asc",
+            },
         },
-
-    });
-
+    },
+});
     if (!service) {
         notFound();
     }
@@ -72,6 +78,7 @@ export default async function EditServicePage({
                     service.sortOrder,
 
                 price: service.price,
+                lists: service.lists,
             }}
         />
     );
