@@ -109,26 +109,27 @@ model Service {
   faqs    ServiceFaq[]
   images  ServiceImage[]
   doctors DoctorService[]
-  lists ServiceList[]
+  lists   ServiceList[]
 
   @@index([categoryId])
   @@index([slug])
 }
+
 model ServiceList {
-  id         String @id @default(cuid())
+  id String @id @default(cuid())
 
-  serviceId  String
-  service    Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
 
-  type       ServiceListType
+  type ServiceListType
 
-  title      String?
-  text       String
+  title String?
+  text  String
 
-  sortOrder  Int @default(0)
+  sortOrder Int @default(0)
 
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum ServiceListType {
@@ -198,25 +199,51 @@ model Doctor {
   fullName String
   slug     String @unique
 
-  specialization  String
+  specialization String
+  experience     String?
+
   careerStartYear Int?
 
   education String?
   biography String?
 
-  h1             String?
+  photo String?
+
+  h1 String?
+
   seoTitle       String?
   seoDescription String?
 
   isPublished Boolean @default(true)
   sortOrder   Int     @default(0)
 
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
-  services  DoctorService[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  services     DoctorService[]
+  certificates DoctorCertificate[]
 
   @@index([slug])
   @@index([isPublished])
+  @@index([sortOrder])
+}
+
+model DoctorCertificate {
+  id String @id @default(cuid())
+
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  name     String
+  image    String
+
+  year Int?
+
+  sortOrder Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([doctorId])
 }
 
 model ArticleCategory {

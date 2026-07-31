@@ -1,5 +1,5 @@
-import { prisma } from "@/server/db/prisma";
 import { ServicesTable } from "@/components/admin/services/ServicesTable";
+import { prisma } from "@/server/db/prisma";
 
 export default async function ServicesPage() {
     const services = await prisma.service.findMany({

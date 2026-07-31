@@ -20,7 +20,9 @@ import { createCategory } from "@/app/admin/(protected)/service-categories/actio
 import { updateCategory } from "@/app/admin/(protected)/service-categories/actions/updateCategory";
 
 import type { ServiceCategory } from "@/generated/prisma/client";
-
+import { useEffect } from "react";
+import { useWatch } from "react-hook-form";
+import { generateSlug } from "@/lib/utils/slugify";
 interface Props {
   category?: ServiceCategory;
 }
@@ -40,15 +42,34 @@ export function CategoryForm({
       isPublished: category?.isPublished ?? true,
     },
   });
+  const name = useWatch({
+    control: form.control,
+    name: "name",
+  });
 
+  useEffect(() => {
+    if (!category && name) {
+      form.setValue(
+        "slug",
+        generateSlug(name),
+        {
+          shouldValidate: true,
+        }
+      );
+    }
+  }, [
+    name,
+    category,
+    form,
+  ]);
   const onSubmit: SubmitHandler<CategorySchema> = async (
     values,
   ) => {
     const result = category
       ? await updateCategory(
-          category.id,
-          values,
-        )
+        category.id,
+        values,
+      )
       : await createCategory(values);
 
     if (!result.success) {

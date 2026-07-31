@@ -14,7 +14,8 @@ import {
     serviceSchema,
     type ServiceSchema,
 } from "@/lib/validations/service";
-
+import { useEffect } from "react";
+import { generateSlug } from "@/lib/utils/slugify";
 import {
     Card,
     CardContent,
@@ -133,6 +134,26 @@ export function ServiceForm({
             sortOrder: service?.sortOrder ?? 0,
         },
     });
+    const name = useWatch({
+        control: form.control,
+        name: "name",
+    });
+
+    useEffect(() => {
+        if (!service && name) {
+            form.setValue(
+                "slug",
+                generateSlug(name),
+                {
+                    shouldValidate: true,
+                }
+            );
+        }
+    }, [
+        name,
+        service,
+        form,
+    ]);
     const categoryId = useWatch({
         control: form.control,
         name: "categoryId",
@@ -151,7 +172,9 @@ export function ServiceForm({
         const result = await createServiceList(data);
 
         if (!result.success || !result.data) {
-            console.error(result.errors);
+            console.error(
+                result.errors ?? "Произошла ошибка"
+            ); (result.errors);
             return;
         }
 
@@ -166,7 +189,9 @@ export function ServiceForm({
         const result = await deleteServiceList(id);
 
         if (!result.success) {
-            console.error(result.errors);
+            console.error(
+                result.errors ?? "Произошла ошибка"
+            ); (result.errors);
             return;
         }
 
@@ -189,7 +214,9 @@ export function ServiceForm({
         );
 
         if (!result.success || !result.data) {
-            console.error(result.errors);
+            console.error(
+                result.errors ?? "Произошла ошибка"
+            ); (result.errors);
             return;
         }
 
@@ -203,27 +230,27 @@ export function ServiceForm({
 
         setEditingList(null);
     }
-async function handleReorderLists(
-    updatedItems: ServiceListItem[]
-) {
-    setLists((prev) =>
-        prev.map((item) => {
-            const updatedItem = updatedItems.find(
-                (updated) =>
-                    updated.id === item.id
-            );
+    async function handleReorderLists(
+        updatedItems: ServiceListItem[]
+    ) {
+        setLists((prev) =>
+            prev.map((item) => {
+                const updatedItem = updatedItems.find(
+                    (updated) =>
+                        updated.id === item.id
+                );
 
-            return updatedItem ?? item;
-        })
-    );
+                return updatedItem ?? item;
+            })
+        );
 
-    await updateServiceListOrder(
-        updatedItems.map((item) => ({
-            id: item.id,
-            sortOrder: item.sortOrder,
-        }))
-    );
-}    async function onSubmit(data: ServiceSchema) {
+        await updateServiceListOrder(
+            updatedItems.map((item) => ({
+                id: item.id,
+                sortOrder: item.sortOrder,
+            }))
+        );
+    } async function onSubmit(data: ServiceSchema) {
         setServerFormError(null);
 
         if (isEdit && service) {
