@@ -3,7 +3,7 @@ import { toast } from "sonner";
 export function showError(
     message?: string
 ) {
-    console.error(
+    toast.error(
         message ?? "Произошла ошибка"
     );
 }

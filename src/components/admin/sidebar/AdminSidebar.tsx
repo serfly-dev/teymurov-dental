@@ -8,7 +8,7 @@ export function AdminSidebar() {
     <aside className="flex h-screen w-72 flex-col border-r border-slate-200 bg-white">
       <div className="border-b border-slate-200 p-6">
         <h2 className="text-xl font-bold text-slate-900">
-          Теймуров Dental
+          Стоматологическая династия Теймуровых
         </h2>
 
         <p className="mt-1 text-sm text-slate-500">

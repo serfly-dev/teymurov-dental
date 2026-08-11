@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import {
     useForm,
 } from "react-hook-form";
-
+import { DoctorPhotoUpload } from "./DoctorPhotoUpload";
 import {
     zodResolver,
 } from "@hookform/resolvers/zod";
@@ -371,22 +371,23 @@ export function DoctorForm({
                         />
 
                     </div>
-
-
                     <div>
                         <label>
-                            Фото URL
+                            Фото врача
                         </label>
-
-                        <Input
-                            {...form.register(
-                                "photo"
-                            )}
+                        <DoctorPhotoUpload
+                            value={form.watch("photo")}
+                            onUpload={(url) =>
+                                form.setValue(
+                                    "photo",
+                                    url,
+                                    {
+                                        shouldValidate: true,
+                                    }
+                                )
+                            }
                         />
-
                     </div>
-
-
                     <div>
                         <label>
                             H1

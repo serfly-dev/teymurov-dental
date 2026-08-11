@@ -35,6 +35,11 @@ export const navigation = [
     icon: Newspaper,
   },
   {
+    title: "Категории статей",
+    href: "/admin/article-categories",
+    icon: FolderTree,
+  },
+  {
     title: "Файлы",
     href: "/admin/media",
     icon: Files,

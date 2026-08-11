@@ -25,7 +25,7 @@ export function SidebarLink({
       href={href}
       className={`flex items-center gap-3 rounded-xl px-4 py-3 transition-all ${
         active
-          ? "bg-sky-600 text-white shadow-md"
+          ? "bg-brand text-white shadow-md"
           : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
       }`}
     >

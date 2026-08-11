@@ -258,30 +258,40 @@ model ArticleCategory {
   updatedAt DateTime @updatedAt
 
   articles Article[]
+
+  @@index([sortOrder])
 }
 
 model Article {
   id String @id @default(cuid())
 
   categoryId String
-  category   ArticleCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category ArticleCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
 
   title String
-  slug  String @unique
+  slug String @unique
 
   excerpt String?
   content String
 
-  h1             String?
-  seoTitle       String?
+  image String?
+
+  h1 String?
+
+  seoTitle String?
   seoDescription String?
 
-  isPublished Boolean   @default(false)
+  isPublished Boolean @default(false)
+
   publishedAt DateTime?
+
+  sortOrder Int @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
   @@index([slug])
+  @@index([sortOrder])
+  @@index([isPublished])
 }
