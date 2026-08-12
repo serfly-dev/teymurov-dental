@@ -92,6 +92,13 @@ html {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --color-base-green: #385144;
+  --color-base-white: #F8F5F2;
+  --color-text-green: #385144;
+  --color-text-black: #000000;
+  --color-text-green: #385144;
+  --color-text-white: #FFFFFF;
+  --color-text-low-opacity-white: #BDBDBD;
 }
 
 .dark {
