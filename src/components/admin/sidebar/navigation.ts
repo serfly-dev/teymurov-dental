@@ -6,6 +6,7 @@ import {
   Newspaper,
   Files,
   Settings,
+  MessageSquare
 } from "lucide-react";
 
 export const navigation = [
@@ -13,6 +14,11 @@ export const navigation = [
     title: "Панель",
     href: "/admin",
     icon: LayoutDashboard,
+  },
+  {
+    title: "Обращения",
+    href: "/admin/contact-requests",
+    icon: MessageSquare,
   },
   {
     title: "Услуги",

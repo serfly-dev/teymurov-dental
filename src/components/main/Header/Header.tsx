@@ -4,7 +4,7 @@ import Styles from "./Header.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
+import { ContactRequestButton } from "@/components/contact-request/ContactRequestButton";
 export const Header = () => {
     const pathname = usePathname();
 
@@ -121,6 +121,8 @@ export const Header = () => {
                     </nav>
                 </div>
             </div>
+            <ContactRequestButton type="APPOINTMENT"/>
+            <ContactRequestButton type="QUESTION"/>
         </header>
     );
 };

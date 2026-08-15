@@ -105,11 +105,12 @@ model Service {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  blocks  ServiceBlock[]
-  faqs    ServiceFaq[]
-  images  ServiceImage[]
-  doctors DoctorService[]
-  lists   ServiceList[]
+  blocks          ServiceBlock[]
+  faqs            ServiceFaq[]
+  images          ServiceImage[]
+  doctors         DoctorService[]
+  lists           ServiceList[]
+  contactRequests ContactRequest[]
 
   @@index([categoryId])
   @@index([slug])
@@ -266,10 +267,10 @@ model Article {
   id String @id @default(cuid())
 
   categoryId String
-  category ArticleCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  category   ArticleCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
 
   title String
-  slug String @unique
+  slug  String @unique
 
   excerpt String?
   content String
@@ -278,7 +279,7 @@ model Article {
 
   h1 String?
 
-  seoTitle String?
+  seoTitle       String?
   seoDescription String?
 
   isPublished Boolean @default(false)
@@ -294,4 +295,50 @@ model Article {
   @@index([slug])
   @@index([sortOrder])
   @@index([isPublished])
+}
+
+enum ContactRequestType {
+  APPOINTMENT
+  QUESTION
+}
+
+enum ContactRequestStatus {
+  NEW
+  CALLED
+  COMPLETED
+  CANCELED
+}
+
+enum CallbackTime {
+  MORNING
+  BEFORE_NOON
+  AFTERNOON
+  EVENING
+  ANYTIME
+}
+
+model ContactRequest {
+  id String @id @default(cuid())
+
+  type ContactRequestType
+
+  name  String
+  phone String
+
+  callbackTime CallbackTime
+
+  serviceId String?
+  service   Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+
+  comment String? @db.Text
+
+  status ContactRequestStatus @default(NEW)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+  @@index([serviceId])
 }
