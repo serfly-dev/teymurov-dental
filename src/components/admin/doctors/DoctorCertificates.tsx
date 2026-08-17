@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import { updateCertificateImage } from "@/app/admin/(protected)/doctors/actions/updateCertificateImage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateCertificate } from "@/app/admin/(protected)/doctors/actions/updateCertificate";
 import { CertificateUpload } from "./CertificateUpload";
 import { createCertificate } from "@/app/admin/(protected)/doctors/actions/createCertificate";
 import { deleteCertificate } from "@/app/admin/(protected)/doctors/actions/deleteCertificate";
+import { updateDoctorCertificate } from "@/app/admin/(protected)/media/actions/updateDoctorCertificate";
 import {
     showError,
     showSuccess,
@@ -131,7 +131,7 @@ export function DoctorCertificates({
         image: string
     ) {
         const result =
-            await updateCertificateImage(
+            await updateDoctorCertificate(
                 id,
                 image
             );
@@ -146,7 +146,12 @@ export function DoctorCertificates({
         setItems((prev) =>
             prev.map((certificate) =>
                 certificate.id === id
-                    ? result.data
+                    ? {
+                          id: result.data!.id,
+                          image: result.data!.image,
+                          name: certificate.name,
+                          year: certificate.year,
+                      }
                     : certificate
             )
         );

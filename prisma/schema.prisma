@@ -342,3 +342,20 @@ model ContactRequest {
   @@index([createdAt])
   @@index([serviceId])
 }
+
+model File {
+  id          String   @id @default(cuid())
+  filename    String
+  originalName String
+  mimeType    String
+  extension   String
+  size        Int
+  url         String   @unique
+  alt         String?
+  createdAt   DateTime @default(now())
+
+  @@index([filename])
+  @@index([originalName])
+  @@index([createdAt])
+  @@index([mimeType])
+}
