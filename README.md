@@ -1,36 +1,237 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🦷 Teymurov Dental
 
-## Getting Started
+<p align="center">
+  <strong>Современный веб-сайт стоматологической клиники</strong><br/>
+  Разработка с фокусом на производительность, SEO и удобство пользователей
+</p>
 
-First, run the development server:
+---
+
+## 📌 О проекте
+
+**Teymurov Dental** — это коммерческий веб-сайт стоматологической клиники, созданный с использованием современных технологий веб-разработки.
+
+Главная цель проекта — создать быстрый, масштабируемый и SEO-оптимизированный сайт, который помогает пациентам легко находить услуги клиники, знакомиться с врачами и записываться на консультацию.
+
+Проект разрабатывается с учетом требований современных поисковых систем и лучших практик UX/UI.
+
+---
+
+## 🚀 Основные возможности
+
+- 🦷 Каталог стоматологических услуг
+- 👨‍⚕️ Страницы врачей
+- 📰 Раздел новостей и статей
+- 📅 Система заявок на консультацию
+- 📂 Управление медиафайлами
+- 🔎 SEO-оптимизированные страницы
+- 📱 Полная адаптивность под мобильные устройства
+- ⚡ Высокая скорость загрузки
+- 🔐 Безопасная работа с пользовательскими данными
+
+---
+
+## 🛠 Технологический стек
+
+### Frontend
+
+- **Next.js 16** (App Router)
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui**
+- **Lucide React**
+- **Framer Motion**
+
+### Backend
+
+- **Node.js**
+- **PostgreSQL**
+- **Prisma ORM**
+
+### Инструменты
+
+- Git
+- Docker
+- ESLint
+- Prettier
+
+---
+
+## 🏗 Архитектура проекта
+
+Проект построен по принципам:
+
+- Server Components First
+- минимизация клиентского JavaScript
+- масштабируемая структура компонентов
+- типобезопасность
+- разделение бизнес-логики и UI
+- подготовка к дальнейшему расширению
+
+---
+
+## 🔍 SEO
+
+В проекте реализуются:
+
+- Metadata API Next.js
+- Open Graph
+- Twitter Cards
+- Schema.org разметка
+- sitemap.xml
+- robots.txt
+- canonical URL
+- семантическая структура заголовков
+- внутренняя перелинковка
+- оптимизация Core Web Vitals
+
+---
+
+## 🎨 Дизайн
+
+Основные принципы интерфейса:
+
+- минимализм
+- современная типографика
+- большое количество свободного пространства
+- аккуратные карточки
+- плавные анимации
+- доверительный медицинский стиль
+- удобство пользователя на всех устройствах
+
+---
+
+## ⚙️ Установка и запуск
+
+### Клонирование проекта
+
+```bash
+git clone https://github.com/serfly-dev/teymurov-dental.git
+
+cd teymurov-dental
+```
+
+### Установка зависимостей
+
+```bash
+npm install
+```
+
+### Настройка переменных окружения
+
+Создайте файл:
+
+```env
+.env
+```
+
+Добавьте необходимые переменные:
+
+```env
+DATABASE_URL=
+NEXT_PUBLIC_SITE_URL=
+```
+
+---
+
+### Запуск базы данных
+
+```bash
+docker compose up -d
+```
+
+---
+
+### Prisma
+
+Генерация клиента:
+
+```bash
+npx prisma generate
+```
+
+Применение миграций:
+
+```bash
+npx prisma migrate dev
+```
+
+---
+
+### Запуск проекта
+
+Режим разработки:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Проект будет доступен:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📁 Структура проекта
 
-To learn more about Next.js, take a look at the following resources:
+```
+teymurov-dental/
+│
+├── app/                # Next.js App Router
+├── components/         # UI компоненты
+├── lib/                # Общие функции и настройки
+├── prisma/             # Схема базы данных
+├── public/             # Статические файлы
+├── styles/             # Глобальные стили
+│
+├── docker-compose.yml
+├── package.json
+└── README.md
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📈 План развития
 
-## Deploy on Vercel
+- [ ] Административная панель
+- [ ] Управление услугами
+- [ ] Управление врачами
+- [ ] Онлайн-запись пациентов
+- [ ] Личный кабинет пациента
+- [ ] Интеграция CRM
+- [ ] Расширенная SEO-система
+- [ ] Блог клиники
+- [ ] Аналитика конверсий
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📊 Качество проекта
+
+При разработке учитываются:
+
+✅ Производительность  
+✅ SEO  
+✅ Accessibility  
+✅ Безопасность  
+✅ Масштабируемость  
+✅ Поддерживаемость кода  
+
+---
+
+## 👨‍💻 Автор
+
+**Serfly Dev**
+
+Frontend Developer
+
+GitHub:
+https://github.com/serfly-dev
+
+---
+
+<p align="center">
+  Built with ❤️ using Next.js
+</p>
